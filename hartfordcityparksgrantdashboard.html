@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hartford City Parks — Grant Sheet Set</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#E4E9EC;
+  --paper-2:#F2F5F6;
+  --line:#1B4965;
+  --line-soft:rgba(27,73,101,.22);
+  --line-hair:rgba(27,73,101,.11);
+  --ink:#0F2431;
+  --ink-2:#4A6072;
+  --red:#C1442E;
+  --green:#3E6B4F;
+  --amber:#A8741A;
+  --slate:#6B7C89;
+  --sheet:#FBFCFC;
+  --shadow:0 1px 0 rgba(15,36,49,.06), 0 6px 22px -14px rgba(15,36,49,.5);
+}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+html,body{margin:0;padding:0}
+body{
+  background:var(--paper);
+  background-image:
+    linear-gradient(var(--line-hair) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-hair) 1px, transparent 1px);
+  background-size:28px 28px;
+  color:var(--ink);
+  font-family:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+.cond{font-family:"IBM Plex Sans Condensed","IBM Plex Sans",sans-serif}
+
+.wrap{max-width:1240px;margin:0 auto;padding:20px 18px 90px}
+
+/* ---------- Title block ---------- */
+.titleblock{
+  border:1.5px solid var(--line);
+  background:var(--sheet);
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+}
+.tb-main{padding:20px 22px 16px;border-bottom:1px solid var(--line-soft)}
+.tb-eyebrow{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--line);margin-bottom:10px;
+}
+h1{
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;
+  font-size:clamp(27px,5.4vw,44px);line-height:1.02;letter-spacing:-.015em;
+  margin:0 0 8px;text-transform:uppercase;
+}
+h1 .thin{font-weight:500;color:var(--line)}
+.tb-sub{font-size:14px;color:var(--ink-2);max-width:64ch;margin:0}
+.tb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
+.tb-cell{padding:9px 14px;border-right:1px solid var(--line-soft)}
+.tb-cell:last-child{border-right:none}
+.tb-k{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate)}
+.tb-v{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:16px;margin-top:2px}
+
+/* ---------- Controls ---------- */
+.controls{
+  border:1.5px solid var(--line);background:var(--sheet);
+  box-shadow:var(--shadow);margin-bottom:18px;padding:14px 16px;
+}
+.searchrow{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}
+.searchbox{flex:1 1 260px;position:relative}
+.searchbox input{
+  width:100%;padding:11px 12px 11px 34px;font-size:15px;
+  font-family:"IBM Plex Sans",sans-serif;color:var(--ink);
+  background:var(--paper-2);border:1px solid var(--line-soft);border-radius:0;
+}
+.searchbox input:focus{outline:2px solid var(--line);outline-offset:-1px;background:#fff}
+.searchbox svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.5}
+.sortsel{
+  padding:11px 10px;font-family:"IBM Plex Mono",monospace;font-size:12px;
+  background:var(--paper-2);border:1px solid var(--line-soft);color:var(--ink);border-radius:0;
+}
+.sortsel:focus{outline:2px solid var(--line);outline-offset:-1px}
+.filterrow{margin-top:12px;display:flex;gap:20px;flex-wrap:wrap}
+.fgroup{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.flabel{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--slate);margin-right:2px}
+.chip{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.03em;
+  padding:5px 9px;border:1px solid var(--line-soft);background:transparent;
+  color:var(--ink-2);cursor:pointer;border-radius:0;transition:.12s;
+}
+.chip:hover{border-color:var(--line);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--line);border-color:var(--line);color:#fff}
+.chip:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+.countbar{
+  margin-bottom:14px;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--line);
+  display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+}
+.resetbtn{background:none;border:none;color:var(--red);cursor:pointer;font:inherit;text-decoration:underline;padding:0}
+
+/* ---------- Sheets ---------- */
+.sheets{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.sheet{
+  border:1.5px solid var(--line);background:var(--sheet);
+  box-shadow:var(--shadow);display:flex;flex-direction:column;
+  animation:in .28s ease both;
+}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}*{transition:none!important}}
+
+.sh-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px 0}
+.sh-no{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.14em;color:var(--slate)}
+.star{background:none;border:none;cursor:pointer;font-size:17px;line-height:1;padding:0;color:var(--line-soft)}
+.star.on{color:var(--amber)}
+.star:focus-visible{outline:2px solid var(--line);outline-offset:2px}
+
+.sh-name{
+  font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:19px;
+  line-height:1.15;padding:6px 14px 2px;letter-spacing:-.005em;
+}
+.sh-agency{padding:0 14px 10px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--line)}
+
+.verdict{margin:0 14px 10px;padding:8px 10px;border-left:3px solid;font-size:13.5px;line-height:1.4}
+.v-yes{border-color:var(--green);background:rgba(62,107,79,.075)}
+.v-likely{border-color:var(--line);background:rgba(27,73,101,.07)}
+.v-cond{border-color:var(--amber);background:rgba(168,116,26,.09)}
+.v-no{border-color:var(--slate);background:rgba(107,124,137,.09)}
+.v-tag{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:3px}
+.v-yes .v-tag{color:var(--green)}.v-likely .v-tag{color:var(--line)}
+.v-cond .v-tag{color:var(--amber)}.v-no .v-tag{color:var(--slate)}
+
+.specs{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-hair)}
+.spec{padding:8px 14px;border-right:1px solid var(--line-hair);border-bottom:1px solid var(--line-hair)}
+.spec:nth-child(2n){border-right:none}
+.spec-k{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.spec-v{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:14.5px;margin-top:1px}
+.spec-v.warn{color:var(--red)}
+.spec-v.ok{color:var(--green)}
+.dots{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:1.5px;margin-right:6px;vertical-align:1px}
+.effort-detail{font-size:11.5px;color:var(--ink-2);margin-top:2px;line-height:1.35}
+.tabs{display:flex;gap:0;margin-bottom:18px;border-bottom:1.5px solid var(--line)}
+.tab{
+  padding:9px 18px;font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;
+  font-size:14px;letter-spacing:.03em;text-transform:uppercase;cursor:pointer;
+  background:transparent;border:1.5px solid transparent;border-bottom:none;color:var(--ink-2);
+  margin-bottom:-1.5px;border-radius:0;
+}
+.tab[aria-selected="true"]{background:var(--sheet);border-color:var(--line);color:var(--ink)}
+.tab:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+.tab.exportb{margin-left:auto;color:var(--line);font-size:12px;text-transform:none;font-weight:500}
+.rolebadge{
+  display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.1em;
+  padding:2px 5px;margin-left:4px;border:1px solid currentColor;text-transform:uppercase;
+}
+.r-matchsource{color:var(--green)}
+.r-needsmatch{color:var(--red)}
+.r-stackswell{color:var(--line)}
+.r-unlocksothers{color:var(--amber)}
+.r-conflicts{color:var(--red)}
+.r-standalone{color:var(--slate)}
+.pairs{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.pair{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;padding:3px 6px;
+  background:rgba(27,73,101,.09);border-left:2px solid var(--line);color:var(--ink);
+}
+.charts{display:grid;gap:16px}
+.chartcard{border:1.5px solid var(--line);background:var(--sheet);box-shadow:var(--shadow);padding:16px 18px}
+.chartcard h3{font-family:"IBM Plex Sans Condensed",sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.05em;margin:0 0 3px}
+.chartcard p.cx{font-size:12.5px;color:var(--ink-2);margin:0 0 14px;max-width:70ch;line-height:1.5}
+.chartcard svg{width:100%;height:auto;display:block;overflow:visible}
+.ct{font-family:"IBM Plex Mono",monospace;font-size:13px;fill:var(--slate);letter-spacing:.04em}
+.cl{font-family:"IBM Plex Sans Condensed",sans-serif;font-size:15px;fill:var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-family:"IBM Plex Mono",monospace;font-size:10px;color:var(--ink-2)}
+.legend i{display:inline-block;width:9px;height:9px;margin-right:4px;vertical-align:-1px}
+
+/* dimension-line fit gauge */
+.gauge{padding:12px 14px 10px}
+.g-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.g-lab{font-family:"IBM Plex Mono",monospace;font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.g-num{font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:700;font-size:17px}
+.g-track{position:relative;height:13px}
+.g-track::before{content:"";position:absolute;left:0;right:0;top:6px;height:1px;background:var(--line-soft)}
+.g-track::after{content:"";position:absolute;left:0;top:1px;width:1px;height:11px;background:var(--line-soft)}
+.g-end{position:absolute;right:0;top:1px;width:1px;height:11px;background:var(--line-soft)}
+.g-fill{position:absolute;top:4.5px;height:4px;left:0;background:var(--line);transition:width .5s cubic-bezier(.2,.7,.3,1)}
+.g-mark{position:absolute;top:0;width:1px;height:13px;background:var(--ink)}
+
+.sh-actions{padding:0 14px 12px}
+.expandbtn{
+  width:100%;padding:8px;background:transparent;border:1px solid var(--line-soft);
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--line);cursor:pointer;border-radius:0;
+}
+.expandbtn:hover{background:var(--line);color:#fff;border-color:var(--line)}
+.expandbtn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+
+.detail{display:none;border-top:1px solid var(--line-soft);padding:14px}
+.detail.open{display:block}
+.d-h{font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--line);margin:0 0 6px}
+.d-h:not(:first-child){margin-top:16px}
+.d-body{font-size:13.5px;line-height:1.55;color:var(--ink)}
+.d-body ul{margin:0;padding-left:17px}
+.d-body li{margin-bottom:5px}
+.scorelist{list-style:none;margin:0;padding:0}
+.scorelist li{display:flex;justify-content:space-between;gap:10px;font-family:"IBM Plex Mono",monospace;font-size:11.5px;padding:3px 0;border-bottom:1px dotted var(--line-hair)}
+.scorelist span:last-child{font-weight:600}
+textarea{
+  width:100%;min-height:66px;padding:8px;font-family:"IBM Plex Sans",sans-serif;
+  font-size:13.5px;background:var(--paper-2);border:1px solid var(--line-soft);
+  border-radius:0;color:var(--ink);resize:vertical;
+}
+textarea:focus{outline:2px solid var(--line);outline-offset:-1px;background:#fff}
+.d-row{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center}
+.minibtn{
+  padding:6px 11px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:0;
+  border:1px solid var(--line);background:var(--line);color:#fff;
+}
+.minibtn.ghost{background:transparent;color:var(--line)}
+.minibtn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+.savenote{font-family:"IBM Plex Mono",monospace;font-size:10.5px;color:var(--green);opacity:0;transition:.3s}
+.savenote.on{opacity:1}
+a.src{color:var(--line);font-family:"IBM Plex Mono",monospace;font-size:11.5px;word-break:break-all}
+
+/* revision / title block footer on each sheet */
+.revblock{
+  margin-top:auto;border-top:1.5px solid var(--line);
+  display:grid;grid-template-columns:1fr auto;
+}
+.rev-l{padding:7px 14px;border-right:1px solid var(--line-soft)}
+.rev-r{padding:7px 12px;text-align:right}
+.rev-k{font-family:"IBM Plex Mono",monospace;font-size:8.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--slate)}
+.rev-v{font-family:"IBM Plex Mono",monospace;font-size:11.5px;margin-top:1px}
+.stale{color:var(--red)}
+
+.empty{
+  border:1.5px dashed var(--line-soft);background:var(--sheet);padding:44px 22px;text-align:center;
+}
+.empty p{margin:0 0 6px;font-family:"IBM Plex Sans Condensed",sans-serif;font-weight:600;font-size:19px}
+.empty small{color:var(--ink-2);font-size:13.5px}
+
+footer{
+  margin-top:26px;border:1.5px solid var(--line);background:var(--sheet);
+  padding:16px 18px;box-shadow:var(--shadow);
+}
+footer h2{font-family:"IBM Plex Sans Condensed",sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.06em;margin:0 0 8px}
+footer p{font-size:13.5px;color:var(--ink-2);margin:0 0 8px;max-width:80ch;line-height:1.55}
+footer p:last-child{margin-bottom:0}
+.status-note{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--slate);margin-top:10px}
+@media (max-width:560px){
+  .tb-cell{border-right:none;border-bottom:1px solid var(--line-soft)}
+  .sheets{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="titleblock">
+    <div class="tb-main">
+      <div class="tb-eyebrow mono">Sheet set · funding opportunities · rev. 2026-08</div>
+      <h1>Hartford City Parks<br><span class="thin">Grant Sheet Set</span></h1>
+      <p class="tb-sub">Every program below was checked against Hartford City's actual profile — population, income, master plan, ADA audit. Search it, filter it, add your own notes. Re-verify anything before you rely on it.</p>
+    </div>
+    <div class="tb-grid">
+      <div class="tb-cell"><div class="tb-k">Applicant</div><div class="tb-v">City of Hartford City</div></div>
+      <div class="tb-cell"><div class="tb-k">County</div><div class="tb-v">Blackford</div></div>
+      <div class="tb-cell"><div class="tb-k">Population</div><div class="tb-v">5,944</div></div>
+      <div class="tb-cell"><div class="tb-k">Median HH income</div><div class="tb-v">$41,752</div></div>
+      <div class="tb-cell"><div class="tb-k">Poverty rate</div><div class="tb-v">19.5%</div></div>
+      <div class="tb-cell"><div class="tb-k">Entitlement status</div><div class="tb-v">Non-entitlement</div></div>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" id="tab-sheets" role="tab" aria-selected="true">Sheets</button>
+    <button class="tab" id="tab-charts" role="tab" aria-selected="false">Charts</button>
+    <button class="tab exportb" id="exportjson">Export data</button>
+  </div>
+
+  <div class="controls">
+    <div class="searchrow">
+      <div class="searchbox">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1B4965" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.3-4.3"/></svg>
+        <input id="q" type="search" placeholder="Search programs, agencies, requirements…" aria-label="Search grants">
+      </div>
+      <select id="sort" class="sortsel mono" aria-label="Sort order">
+        <option value="fit">Sort: fit score</option>
+        <option value="effort">Sort: easiest to apply</option>
+        <option value="deadline">Sort: next deadline</option>
+        <option value="amount">Sort: award size</option>
+        <option value="match">Sort: lowest match</option>
+        <option value="name">Sort: name</option>
+      </select>
+    </div>
+    <div class="filterrow">
+      <div class="fgroup"><span class="flabel">Source</span><div id="f-level"></div></div>
+      <div class="fgroup"><span class="flabel">Window</span><div id="f-status"></div></div>
+      <div class="fgroup"><span class="flabel">Verdict</span><div id="f-verdict"></div></div>
+      <div class="fgroup"><span class="flabel">View</span><button class="chip" id="f-star" aria-pressed="false">★ Starred only</button></div>
+    </div>
+  </div>
+
+  <div class="countbar">
+    <span id="count">—</span>
+    <button class="resetbtn mono" id="reset">Clear filters</button>
+  </div>
+
+  <div id="sheets" class="sheets"></div>
+  <div id="charts" class="charts" hidden></div>
+
+  <footer>
+    <h2>How to read this — and what it isn't</h2>
+    <p><strong>This is not every grant that exists.</strong> There are thousands of private foundations alone. What's here is the set that realistically fits a non-entitlement Indiana city of ~5,900 with a parks department and a documented ADA problem. Treat it as a working file, not a finished census.</p>
+    <p><strong>Verify before you rely.</strong> Deadlines move, programs get defunded, and staff turn over. Each sheet carries a "verified" date. Anything older than 90 days shows in red — re-check it against the agency's own page before you build a plan around it.</p>
+    <p><strong>The metric people forget:</strong> reimbursement vs. upfront. Several of these pay you back only after you've spent the money. A 20%-match grant that reimburses still requires the city to front 100% of the cash. That's a council conversation, not a parks conversation, and it kills more small-town projects than scoring ever does.</p>
+    <p><strong>Fit score</strong> is a weighted composite of six factors, shown in full on each sheet. It's a sorting aid and a conversation starter, not a verdict. A 45 you can actually win beats an 80 you can't fund the match on.</p>
+    <p><strong>Don't trust grant aggregator sites.</strong> The T-Mobile sheet is in here as a live example: the program concluded permanently in June 2026, and third-party databases were still advertising it as open weeks later. Confirm every opportunity on the funder's own website before spending time on it.</p>
+    <p><strong>The 501(c)(3) pattern.</strong> Several strong funders — Finish Line among them — will only accept nonprofit applicants. A Friends of Hartford City Parks group is the key to that whole category, and it is the one structural change that raises the ceiling on everything else here.</p>
+    <p class="status-note" id="storagenote">Notes and verification dates save automatically to this artifact.</p>
+  </footer>
+</div>
+
+<script type="application/json" id="grant-data">
+[
+ {
+  "id": "cdbg-pf",
+  "name": "CDBG Public Facilities / Construction",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-04-05",
+  "deadlineLabel": "Proposal ~Apr 5, full application ~Jun 7",
+  "amount": "Up to $750,000",
+  "match": "10% of total project cost",
+  "reimb": "Reimbursement",
+  "verdict": "yes",
+  "verdictText": "Strongest single fit. ADA barrier removal is expressly eligible, and the presumed-benefit rule means no income survey is required. Note the real cap is $750,000 — not the $1.5M previously listed — and the round runs spring, not January.",
+  "scores": {
+   "award": 88,
+   "matchEase": 85,
+   "adaFit": 98,
+   "simplicity": 40,
+   "oddsEase": 55,
+   "timing": 70
+  },
+  "need": [
+   "Engage an OCRA-certified Grant Administrator — the city cannot submit without one",
+   "Sort ADA audit findings into barrier removal (eligible) vs. maintenance (not eligible)",
+   "Preliminary engineering / architectural report — a threshold item in most state CDBG programs",
+   "Hold a public hearing, noticed at least 10 days ahead and accessible to people with disabilities",
+   "Certified administrator sends Intent to Apply to the Northeast Community Liaison within two weeks of the round opening",
+   "Confirm Hartford City stays off the CDBG Project Timeliness Report"
+  ],
+  "watch": "Barrier removal ≠ repair. A rusted handrail on an existing ramp is maintenance and is not eligible. A path that was never accessible is barrier removal and is.",
+  "src": "https://www.in.gov/ocra/cdbg/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "CDBG carries a specific regulation (24 CFR 570.201(g)) permitting its funds to meet cost-share requirements on other federal grants. That makes it one of the very few federal sources that can legally match LWCF. Confirm with both OCRA and DNR before relying on it.",
+   "with": [
+    "lwcf",
+    "usda-cf",
+    "rtp"
+   ]
+  }
+ },
+ {
+  "id": "usda-cf",
+  "name": "Community Facilities Direct Loan & Grant",
+  "agency": "USDA Rural Development",
+  "level": "Federal",
+  "status": "Rolling",
+  "deadline": "",
+  "deadlineLabel": "Applications accepted year-round",
+  "amount": "Varies; graduated",
+  "match": "~45% (est. tier)",
+  "reimb": "Varies",
+  "verdict": "likely",
+  "verdictText": "Community parks and activity centers are explicitly eligible. Population under 20,000 qualifies; the grant percentage depends on income tier.",
+  "scores": {
+   "award": 70,
+   "matchEase": 70,
+   "adaFit": 70,
+   "simplicity": 55,
+   "oddsEase": 70,
+   "timing": 95
+  },
+  "need": [
+   "Contact the Indiana USDA Rural Development field office — they walk applicants through it directly",
+   "Confirm which grant tier applies: max 55% for communities of 12,000 or fewer meeting the income test",
+   "Compare Hartford City's $41,752 median household income against the Indiana non-metro median",
+   "Demonstrate legal authority to borrow, construct, operate and maintain the facility"
+  ],
+  "watch": "No fixed deadline is a real advantage — you can apply when the project is ready rather than racing a cycle.",
+  "src": "https://www.rd.usda.gov/programs-services/community-facilities/community-facilities-direct-loan-grant-program-7",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Stacks well",
+   "note": "Grants may be combined with a USDA direct or guaranteed loan, applicant contribution, or funding from other sources. Explicitly designed to sit inside a larger capital stack.",
+   "with": [
+    "cdbg-pf",
+    "bbf-general",
+    "blight"
+   ]
+  }
+ },
+ {
+  "id": "bbf-general",
+  "name": "Ball Brothers Foundation — General Grants",
+  "agency": "Ball Brothers Foundation",
+  "level": "Private",
+  "status": "Twice yearly",
+  "deadline": "2027-02-15",
+  "deadlineLabel": "Prelim applications Feb 15 & Jul 15",
+  "amount": "$5K – $100K",
+  "match": "None stated",
+  "reimb": "Upfront",
+  "verdict": "yes",
+  "verdictText": "Blackford County is inside the stated footprint, and the foundation funds government organizations — not just nonprofits.",
+  "scores": {
+   "award": 60,
+   "matchEase": 98,
+   "adaFit": 65,
+   "simplicity": 80,
+   "oddsEase": 60,
+   "timing": 75
+  },
+  "need": [
+   "Contact foundation staff to discuss the project before applying — they ask for this",
+   "Submit a preliminary application through the online portal first; full proposals are invited",
+   "Frame the ask around innovation or capacity-building, which is what they say they prioritize",
+   "Be realistic: the footprint centers on Muncie/Delaware County, with Blackford as a secondary county"
+  ],
+  "watch": "No match requirement makes this a strong candidate for funding the local share of a bigger state or federal grant.",
+  "src": "https://www.ballfdn.org/grants",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Match source",
+   "note": "Private, non-federal dollars with no match requirement — the cleanest possible source for covering the local share of a federal or state grant. Ask them to fund the match specifically; funders often prefer that framing.",
+   "with": [
+    "lwcf",
+    "cdbg-pf",
+    "usda-cf",
+    "rtp",
+    "itp"
+   ]
+  }
+ },
+ {
+  "id": "lwcf",
+  "name": "Land & Water Conservation Fund",
+  "agency": "DNR — Community Grants & Trails",
+  "level": "State",
+  "status": "Annual",
+  "deadline": "2026-11-15",
+  "deadlineLabel": "Master plan draft due Nov 15; applications Jul 1 – Aug 1",
+  "amount": "$250K – $1M",
+  "match": "50% of total project cost — the hard part",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Only open to communities with a DNR-accepted five-year parks master plan. Hartford City has a plan — confirm DNR accepted it and when eligibility expires.",
+  "scores": {
+   "award": 100,
+   "matchEase": 15,
+   "adaFit": 75,
+   "simplicity": 35,
+   "oddsEase": 45,
+   "timing": 60
+  },
+  "need": [
+   "Find the DNR acceptance letter — it names your exact expiration date",
+   "If no letter exists, submit a plan draft by Nov 15 to be eligible next grant year",
+   "Population under 7,000 means the free Small Town Fill-In-The-Blank template is available",
+   "Confirm the project appears in your plan's priority list — applications score against your own plan",
+   "Identify a real 50% match source: bond, foundation, donated land, or in-kind"
+  ],
+  "watch": "Renovations due to neglect, poor maintenance or vandalism are not eligible, and indoor facilities are excluded except as support facilities. Frame accessibility work as expanding access, not repairing decay. Two separate clocks. The master plan draft deadline is Nov 15 (final Apr 15) and it only governs eligibility; the grant application itself is emailed in a July 1 – Aug 1 window. Miss November and you are out for the following application year.",
+  "src": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Needs match",
+   "note": "Needs a 50% match that is normally non-federal. CDBG is an explicitly named exception. Match may also be cash, donated land, or documented volunteer hours — the volunteer route is realistic for a town with an active Friends group.",
+   "with": [
+    "cdbg-pf",
+    "bbf-general",
+    "bccf",
+    "reeve-de"
+   ]
+  }
+ },
+ {
+  "id": "cdbg-plan",
+  "name": "CDBG Planning Grant",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-01-29",
+  "deadlineLabel": "2026 Cycle 2 closed Jul 12 — next cycle ~Jan 2027",
+  "amount": "$20,000 – $90,000 by plan type",
+  "match": "8% minimum of total project cost",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Lowest match of any program here. Whether a parks or ADA transition plan is an eligible plan type needs confirming with your Community Liaison.",
+  "scores": {
+   "award": 35,
+   "matchEase": 95,
+   "adaFit": 60,
+   "simplicity": 50,
+   "oddsEase": 60,
+   "timing": 65
+  },
+  "need": [
+   "Ask Lindsey Hammond directly whether a parks master plan or ADA transition plan is an eligible plan type",
+   "Requires an OCRA-certified Grant Administrator, same as construction grants",
+   "Intent to Apply within two weeks of the round opening",
+   "Procurement can take up to 45 days and stays valid 12 months — start early"
+  ],
+  "watch": "If a parks plan qualifies, this covers 92% of the cost of the document that unlocks LWCF. That sequencing is worth checking before anything else. Caps are set per plan type, not a single range: feasibility study $20K, historic preservation plan $20K, downtown revitalization plan $30K–$40K, comprehensive plan $50K–$60K, utility studies up to $90K. Pick the plan type first, then the budget follows.",
+  "src": "https://www.in.gov/ocra/cdbg/planning-grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Unlocks others",
+   "note": "Does not fund construction, but the plan it produces is a prerequisite for LWCF and strengthens every OCRA construction application. Sequence this first.",
+   "with": [
+    "lwcf",
+    "cdbg-pf",
+    "itp"
+   ]
+  }
+ },
+ {
+  "id": "bbf-rapid",
+  "name": "Ball Brothers — Rapid Grants",
+  "agency": "Ball Brothers Foundation",
+  "level": "Private",
+  "status": "Open",
+  "deadline": "2026-11-30",
+  "deadlineLabel": "Available Feb – Nov each year",
+  "amount": "Up to $5,000",
+  "match": "None stated",
+  "reimb": "Upfront",
+  "verdict": "yes",
+  "verdictText": "Small, fast, and open right now. Good for equipment, a single accessibility fix, or professional development.",
+  "scores": {
+   "award": 20,
+   "matchEase": 98,
+   "adaFit": 55,
+   "simplicity": 95,
+   "oddsEase": 75,
+   "timing": 100
+  },
+  "need": [
+   "Identify one discrete need under $5,000 — a single ramp, accessible picnic tables, a transfer station",
+   "Apply through the foundation's online portal",
+   "Use it to build a completed-grant track record before asking anyone for six figures"
+  ],
+  "watch": "The cheapest way to establish credibility with funders. A small completed grant makes a large ask believable.",
+  "src": "https://www.ballfdn.org/grants",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Small non-federal dollars. Too small to match a large award, but can cover an engineering report or application cost that unlocks one.",
+   "with": [
+    "cdbg-plan",
+    "stbt"
+   ]
+  }
+ },
+ {
+  "id": "bccf",
+  "name": "Blackford County Community Foundation",
+  "agency": "BCCF",
+  "level": "Private",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Cycle unconfirmed — call them",
+  "amount": "$3K – $25K observed",
+  "match": "Varies",
+  "reimb": "Upfront",
+  "verdict": "cond",
+  "verdictText": "Local, accessible, and has funded parks programming before. Their stated focus is local nonprofits — confirm whether a city department can apply directly.",
+  "scores": {
+   "award": 30,
+   "matchEase": 90,
+   "adaFit": 50,
+   "simplicity": 88,
+   "oddsEase": 85,
+   "timing": 60
+  },
+  "need": [
+   "Call (765) 348-3411 — they are at 121 N. High Street, walking distance from City Hall",
+   "Ask whether the city may apply directly or needs a Friends of Hartford City Parks group as applicant",
+   "If a fiscal sponsor is needed, that is worth setting up regardless — it unlocks nonprofit-only funders"
+  ],
+  "watch": "A Friends-of-Parks 501(c)(3) is the single highest-leverage structural move available. It opens every nonprofit-restricted funder in the state.",
+  "src": "https://blackfordcofoundation.org/",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Match source",
+   "note": "Local, non-federal, and politically valuable — a hometown foundation backing the project strengthens every other application.",
+   "with": [
+    "lwcf",
+    "cdbg-pf",
+    "itp"
+   ]
+  }
+ },
+ {
+  "id": "quip",
+  "name": "Quick Impact Placebased Grant (QuIP)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Current status unconfirmed",
+  "amount": "$2,500 – $5,000",
+  "match": "50%",
+  "reimb": "Varies",
+  "verdict": "cond",
+  "verdictText": "Historically funded small parks and placemaking. Sources confirming it are several years old — confirm it still runs before planning around it.",
+  "scores": {
+   "award": 18,
+   "matchEase": 60,
+   "adaFit": 40,
+   "simplicity": 90,
+   "oddsEase": 70,
+   "timing": 40
+  },
+  "need": [
+   "Ask your Community Liaison whether QuIP is still an active program",
+   "If active, pair it with a visible, photographable improvement — that is what it rewards"
+  ],
+  "watch": "Low stakes, fast turnaround, high visibility. Good for building public support for a larger ask.",
+  "src": "https://www.in.gov/ocra/",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Needs match",
+   "note": "50% match on a small award. Pair with private dollars; the amounts are small enough that a local foundation can cover it outright.",
+   "with": [
+    "bccf",
+    "bbf-rapid"
+   ]
+  }
+ },
+ {
+  "id": "rtp",
+  "name": "Recreational Trails Program (RTP)",
+  "agency": "DNR",
+  "level": "Federal",
+  "status": "Closed",
+  "deadline": "2028-04",
+  "deadlineLabel": "Program retired — replaced by Indiana Trails Program",
+  "amount": "Varies",
+  "match": "Typically 20%",
+  "reimb": "Reimbursement",
+  "verdict": "no",
+  "verdictText": "DNR has retired RTP: \"The Recreational Trails Program (RTP) grant program has been replaced by the Indiana Trails Program (ITP) grants.\" Existing RTP agreements continue, but there is no new application cycle. Trail work now routes through ITP, whose next round is spring 2028.",
+  "scores": {
+   "award": 50,
+   "matchEase": 70,
+   "adaFit": 55,
+   "simplicity": 55,
+   "oddsEase": 0,
+   "timing": 5
+  },
+  "need": [
+   "Do not plan around a March 2027 RTP deadline — it no longer exists",
+   "Move any accessible-trail concept to the Indiana Trails Program (ITP) entry",
+   "ITP is biennial: next window spring 2028, $100K–$400K, 20% local match"
+  ],
+  "watch": "This was carrying a March 2027 date that will never arrive. The trail idea is still good — it just has to ride ITP in 2028 or a CDBG facilities application sooner.",
+  "src": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Needs match",
+   "note": "Federal, so its match generally cannot come from another federal source — with CDBG as the usual exception. Private or local dollars are the safer route.",
+   "with": [
+    "bbf-general",
+    "bccf",
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "itp",
+  "name": "Indiana Trails Program (ITP)",
+  "agency": "DNR",
+  "level": "State",
+  "status": "Closed",
+  "deadline": "2028-04",
+  "deadlineLabel": "Next round spring 2028",
+  "amount": "$100K – $400K",
+  "match": "20%, held at application",
+  "reimb": "Reimbursement",
+  "verdict": "likely",
+  "verdictText": "Eligible as a unit of government, but this is a biennium program and the next round is well out.",
+  "scores": {
+   "award": 65,
+   "matchEase": 65,
+   "adaFit": 50,
+   "simplicity": 50,
+   "oddsEase": 55,
+   "timing": 10
+  },
+  "need": [
+   "You must have 20% of total project cost in hand at the time of application, not later",
+   "Master plan not required but strongly recommended",
+   "Schedule a pre-application meeting the summer before applying — DNR encourages this",
+   "Quarterly reporting is required of all DNR Community Grants and Trails programs"
+  ],
+  "watch": "Long runway. Useful as the target for a multi-year plan rather than a near-term ask.",
+  "src": "https://in.gov/dnr/state-parks/recreation/grants/indiana-trails-program/",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Needs match",
+   "note": "The 20% must be in hand at the time of application, not promised. That makes an early private commitment essential rather than optional.",
+   "with": [
+    "bbf-general",
+    "bccf",
+    "aarp-cc"
+   ]
+  }
+ },
+ {
+  "id": "wrhcf",
+  "name": "Wabash River Heritage Corridor Fund",
+  "agency": "DNR",
+  "level": "State",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Eligibility unconfirmed",
+  "amount": "Small grants",
+  "match": "Varies",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Eligibility is defined by county. Blackford drains toward the Wabash via the Salamonie, but I could not confirm it is an included county.",
+  "scores": {
+   "award": 25,
+   "matchEase": 60,
+   "adaFit": 30,
+   "simplicity": 70,
+   "oddsEase": 60,
+   "timing": 50
+  },
+  "need": [
+   "Confirm with DNR Community Grants & Trails whether Blackford County is an eligible county",
+   "Master plan support is strongly recommended for WRHCF projects"
+  ],
+  "watch": "Quick yes-or-no question. Worth one email so it stops occupying space on the list.",
+  "src": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Needs match",
+   "note": "Confirm county eligibility first. If eligible, treat like any other small state grant needing local match.",
+   "with": [
+    "bccf"
+   ]
+  }
+ },
+ {
+  "id": "usda-eii",
+  "name": "Economic Impact Initiative Grants",
+  "agency": "USDA Rural Development",
+  "level": "Federal",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Rolling; eligibility test applies",
+  "amount": "Varies",
+  "match": "Graduated",
+  "reimb": "Varies",
+  "verdict": "cond",
+  "verdictText": "Targets rural areas under 20,000 with a \"Not Employed Rate\" above 19.5%. Hartford City may qualify — the specific rate needs checking.",
+  "scores": {
+   "award": 55,
+   "matchEase": 75,
+   "adaFit": 55,
+   "simplicity": 50,
+   "oddsEase": 65,
+   "timing": 85
+  },
+  "need": [
+   "Ask the Indiana RD office to run the Not Employed Rate test for Hartford City",
+   "Median household income must be below 90% of the state non-metro median",
+   "Community centers and public facilities are named eligible categories"
+  ],
+  "watch": "If Hartford City clears the employment test, this is more generous than standard Community Facilities.",
+  "src": "https://www.rd.usda.gov/programs-services/community-facilities/economic-impact-initiative-grants-3",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Standalone",
+   "note": "No stacking notes recorded yet.",
+   "with": []
+  }
+ },
+ {
+  "id": "nlt",
+  "name": "Next Level Trails",
+  "agency": "DNR",
+  "level": "State",
+  "status": "Unfunded",
+  "deadline": "",
+  "deadlineLabel": "No funding; Round 5 uncertain",
+  "amount": "Historically large",
+  "match": "20% minimum",
+  "reimb": "Milestone payments",
+  "verdict": "no",
+  "verdictText": "There is currently no NLT funding. A fifth round depends on future appropriations. Nothing to do here but watch.",
+  "scores": {
+   "award": 90,
+   "matchEase": 65,
+   "adaFit": 40,
+   "simplicity": 45,
+   "oddsEase": 20,
+   "timing": 0
+  },
+  "need": [
+   "Monitor for a Round 5 announcement; no action available now"
+  ],
+  "watch": "Unusually, NLT paid funds up front against milestones rather than reimbursing. If it returns, that matters a lot for a cash-tight city.",
+  "src": "https://www.in.gov/dnr/state-parks/recreation/grants/next-level-trails/",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Needs match",
+   "note": "Dormant. If revived, its milestone-based payments were unusually friendly to cash-tight cities.",
+   "with": []
+  }
+ },
+ {
+  "id": "cdbg-oor",
+  "name": "Owner Occupied Rehabilitation",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-03-01",
+  "deadlineLabel": "2026 Cycle 2 closed Jul 12 — next cycle ~early 2027",
+  "amount": "Up to $350,000 (cities/towns)",
+  "match": "10% of total project cost",
+  "reimb": "Reimbursement",
+  "verdict": "no",
+  "verdictText": "Housing rehabilitation, not parks. Listed for completeness so it stops appearing in searches as an unknown.",
+  "scores": {
+   "award": 40,
+   "matchEase": 80,
+   "adaFit": 5,
+   "simplicity": 40,
+   "oddsEase": 55,
+   "timing": 60
+  },
+  "need": [
+   "Not applicable to parks projects — no action"
+  ],
+  "watch": "Worth knowing the city may be pursuing this separately; two CDBG applications in one cycle can compete against each other.",
+  "src": "https://www.in.gov/ocra/cdbg/owner-occupied-rehabilitation-program",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Conflicts",
+   "note": "Not a parks program, and more importantly two CDBG applications from one city in the same round compete against each other. Coordinate with whoever is pursuing this.",
+   "with": [
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "dnr-range",
+  "name": "DNR Shooting Range Program",
+  "agency": "DNR / Wildlife Restoration",
+  "level": "Federal",
+  "status": "Open",
+  "deadline": "",
+  "deadlineLabel": "Ongoing",
+  "amount": "Varies",
+  "match": "Varies",
+  "reimb": "Reimbursement",
+  "verdict": "no",
+  "verdictText": "Restricted to shooting range facilities. No application to Hartford City's park inventory.",
+  "scores": {
+   "award": 30,
+   "matchEase": 50,
+   "adaFit": 0,
+   "simplicity": 50,
+   "oddsEase": 50,
+   "timing": 50
+  },
+  "need": [
+   "Not applicable — no action"
+  ],
+  "watch": "",
+  "src": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Not applicable.",
+   "with": []
+  }
+ },
+ {
+  "id": "reeve-de",
+  "name": "Reeve Foundation — Direct Effect Grants",
+  "agency": "Christopher & Dana Reeve Foundation",
+  "level": "Private",
+  "status": "Annual",
+  "deadline": "2027-03-12",
+  "deadlineLabel": "Opens ~late Jan, closes ~Mar 12",
+  "amount": "$5,000 – $24,999",
+  "match": "None required",
+  "reimb": "Upfront",
+  "verdict": "yes",
+  "verdictText": "Parks and recreation departments and municipal governments are named eligible applicants — no 501(c)(3) needed. Funds accessibility equipment specifically.",
+  "scores": {
+   "award": 30,
+   "matchEase": 95,
+   "adaFit": 100,
+   "simplicity": 80,
+   "oddsEase": 50,
+   "timing": 70
+  },
+  "need": [
+   "Pick specific equipment, not general renovation — they fund named budget items",
+   "A hydraulic lift at a pool is a listed example. Hartford City has a municipal pool.",
+   "Accessible picnic tables and adapted playground gliders are also named examples",
+   "Vendor quotes are required for every equipment request and must match itemized cost",
+   "Projects must be completed within 12 months of award"
+  ],
+  "watch": "They will not fund installation of a NEW playground. Adding accessible equipment to an existing one is fine. Read that question on the application carefully — answering wrong disqualifies you. The 2026 cycle ran Jan 29 – Mar 12 with awards May 30 and a grant period starting June 1. Expect the same shape in 2027 — that is a six-week writing window, so decide by December.",
+  "src": "https://www.christopherreeve.org/todays-care/get-support/grants-for-non-profits/direct-effect-quality-of-life-grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Non-federal and equipment-specific. Pairs naturally with a larger accessibility construction grant: Reeve buys the pool lift, CDBG rebuilds the deck around it.",
+   "with": [
+    "lwcf",
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "aarp-cc",
+  "name": "AARP Community Challenge",
+  "agency": "AARP Livable Communities",
+  "level": "Private",
+  "status": "Annual",
+  "deadline": "2027-03-04",
+  "deadlineLabel": "2026 round awarded; 2027 dates not yet announced",
+  "amount": "Few hundred – $15,000",
+  "match": "None required",
+  "reimb": "Upfront",
+  "verdict": "yes",
+  "verdictText": "Government entities are explicitly eligible, and \"creating vibrant public places\" including parks is a named category. Nearly a perfect match for the audit findings.",
+  "scores": {
+   "award": 25,
+   "matchEase": 95,
+   "adaFit": 90,
+   "simplicity": 85,
+   "oddsEase": 40,
+   "timing": 55
+  },
+  "need": [
+   "Wait for the 2027 cycle — 2026 closed March 4 and grantees were named June 24",
+   "Frame the project around residents age 50 and older; that is the mission test",
+   "Project must be quick-action and completable in a short window",
+   "Register for the optional Q&A webinar, usually late January"
+  ],
+  "watch": "A 2026 grantee built accessible concrete sidewalks connecting parking areas to park pavilions, replacing uneven grass routes. That is close to a template for Hartford City. But it is competitive: 750 awards from 5,100 applications. AARP awarded a record $8.3M across 750 projects in 2026, so the cycle is healthy and continuing. The 2027 dates are not posted yet — the Livable Communities newsletter is the announcement channel.",
+  "src": "https://www.aarp.org/livable-communities/community-challenge/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Non-federal quick-action money. Best used for a visible first phase that demonstrates momentum in a later, larger application.",
+   "with": [
+    "cdbg-pf",
+    "lwcf"
+   ]
+  }
+ },
+ {
+  "id": "finishline",
+  "name": "Finish Line Youth Foundation — Legacy Grants",
+  "agency": "JD Finish Line Foundation",
+  "level": "Private",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Cycles announced periodically",
+  "amount": "Up to $75,000",
+  "match": "None stated",
+  "reimb": "Upfront",
+  "verdict": "cond",
+  "verdictText": "Legacy Grants fund facility improvements to grounds and property — but applicants must be 501(c)(3). The city cannot apply directly.",
+  "scores": {
+   "award": 55,
+   "matchEase": 95,
+   "adaFit": 45,
+   "simplicity": 70,
+   "oddsEase": 45,
+   "timing": 40
+  },
+  "need": [
+   "Requires a 501(c)(3) applicant — a Friends of Hartford City Parks group would unlock this",
+   "Indianapolis-based, with Indiana treated as a geographic priority",
+   "Their stated interest includes youth with disabilities and underserved areas — both fit",
+   "Programmatic grants up to $5,000 also exist for youth athletic programming"
+  ],
+  "watch": "This is the clearest dollar figure yet on why a Friends group matters. $75,000 sits behind a nonprofit registration the city does not have.",
+  "src": "https://www.finishline.com/foundation-grants",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Match source",
+   "note": "Non-federal, and at up to $75,000 large enough to cover a meaningful share of an LWCF match — if a Friends group exists to receive it.",
+   "with": [
+    "lwcf",
+    "itp"
+   ]
+  }
+ },
+ {
+  "id": "tmobile",
+  "name": "T-Mobile Hometown Grants",
+  "agency": "T-Mobile / Main Street America",
+  "level": "Private",
+  "status": "Unfunded",
+  "deadline": "",
+  "deadlineLabel": "Program permanently concluded",
+  "amount": "Was up to $50,000",
+  "match": "None",
+  "reimb": "Upfront",
+  "verdict": "no",
+  "verdictText": "Ended June 2026 after reaching its 500-town goal. Listed here because several grant aggregator sites still show it as open.",
+  "scores": {
+   "award": 50,
+   "matchEase": 95,
+   "adaFit": 50,
+   "simplicity": 80,
+   "oddsEase": 30,
+   "timing": 0
+  },
+  "need": [
+   "No action available — the program is closed"
+  ],
+  "watch": "A useful warning about third-party grant databases. Several still listed this as accepting applications weeks after T-Mobile announced the final round. Always confirm on the funder's own site.",
+  "src": "https://www.t-mobile.com/brand/hometown-grants",
+  "verified": "2026-08-11",
+  "stack": {
+   "role": "Standalone",
+   "note": "Program closed.",
+   "with": []
+  }
+ },
+ {
+  "id": "walmart",
+  "name": "Walmart Spark Good Local Grants",
+  "agency": "Walmart / Sam's Club",
+  "level": "Private",
+  "status": "Open",
+  "deadline": "2026-11-30",
+  "deadlineLabel": "Cycle 3 open now — closes Nov 30",
+  "amount": "$250 – $5,000",
+  "match": "None required",
+  "reimb": "Upfront",
+  "verdict": "cond",
+  "verdictText": "Municipal agencies are eligible and the cycle is open — but there is no Walmart in Hartford City, so this depends on making a service-area case to a store in another county.",
+  "scores": {
+   "award": 18,
+   "matchEase": 98,
+   "adaFit": 50,
+   "simplicity": 88,
+   "oddsEase": 40,
+   "timing": 100
+  },
+  "need": [
+   "Nearest stores: Marion (~18 mi), Portland (~20 mi), Muncie (~22 mi), Bluffton (~25 mi)",
+   "Apply to ONE store and argue Hartford City sits inside its service area",
+   "Create a Spark Good account and get Deed-verified first — this takes lead time",
+   "Local Connection is a scored section and is the weak point here; use real numbers about who travels to that store",
+   "Cycle 3 runs Aug 1 through Nov 30; Cycle 1 reopens Feb 1"
+  ],
+  "watch": "Downgraded after confirming there is no Walmart in Hartford City. Still worth an afternoon since the application is five short sections and there is no match — but do not build a plan around it.",
+  "src": "https://www.walmart.org/how-we-give/program-guidelines/spark-good-local-grants-guidelines",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Small non-federal dollars. Realistically a first-phase or equipment contribution rather than a match for anything large.",
+   "with": [
+    "stbt",
+    "reeve-de"
+   ]
+  }
+ },
+ {
+  "id": "lowes",
+  "name": "Lowe's Community Impact Grants",
+  "agency": "Lowe's",
+  "level": "Private",
+  "status": "Closed",
+  "deadline": "2027-02-18",
+  "deadlineLabel": "2026 round closed Mar 20 — 2027 uncertain",
+  "amount": "$10,000 – $100,000",
+  "match": "None required",
+  "reimb": "In-kind renovation",
+  "verdict": "cond",
+  "verdictText": "Cities and municipalities are eligible and parks are a named project type. But 2026 was the final year of the five-year commitment, so a 2027 round is not guaranteed.",
+  "scores": {
+   "award": 70,
+   "matchEase": 95,
+   "adaFit": 60,
+   "simplicity": 75,
+   "oddsEase": 30,
+   "timing": 25
+  },
+  "need": [
+   "Nominations open to any resident 21 or older — a board member or any citizen can nominate",
+   "Nomination window ran Feb 18 to Mar 20 in 2026; watch for a 2027 announcement in January",
+   "Project must be a physical improvement to a community space",
+   "Only about 100 projects are selected nationally each year"
+  ],
+  "watch": "Their own terms list \"a new playground at a community park\" as an example project. If a 2027 round opens, this is worth a nomination — it costs nothing but a form.",
+  "src": "https://corporate.lowes.com/our-responsibilities/community-impact/faqs",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Stacks well",
+   "note": "Arrives largely as in-kind renovation labor and materials. In-kind contributions can often count toward match on other awards if documented contemporaneously.",
+   "with": [
+    "cdbg-pf",
+    "lwcf"
+   ]
+  }
+ },
+ {
+  "id": "mlsgo",
+  "name": "MLS GO Play Fund (via NRPA)",
+  "agency": "NRPA / MLS GO / RCX Sports",
+  "level": "Private",
+  "status": "Open",
+  "deadline": "2026-12-31",
+  "deadlineLabel": "Applications due Dec 31, 2026",
+  "amount": "Share of $100,000",
+  "match": "None stated",
+  "reimb": "Upfront",
+  "verdict": "cond",
+  "verdictText": "Open to park and recreation agencies, but tied to youth soccer programming rather than accessibility. Fits only if the department wants to run a league.",
+  "scores": {
+   "award": 40,
+   "matchEase": 85,
+   "adaFit": 20,
+   "simplicity": 50,
+   "oddsEase": 60,
+   "timing": 80
+  },
+  "need": [
+   "The department must apply and complete the process to become an MLS GO League operator",
+   "Funds offset seasonal costs for the league and individual players",
+   "Best fit if there is existing demand for youth soccer in Hartford City"
+  ],
+  "watch": "Off-strategy for the ADA work, but it is open and it is real money for programming. Worth knowing about rather than pursuing first.",
+  "src": "https://www.nrpa.org/our-work/Grant-Fundraising-Resources/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Programming money tied to league operation. No meaningful interaction with the capital grants on this board.",
+   "with": []
+  }
+ },
+ {
+  "id": "nrpa-direct",
+  "name": "NRPA Direct Grant Programs",
+  "agency": "National Recreation and Park Association",
+  "level": "Private",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Nothing open as of Aug 2026",
+  "amount": "$10,000 – $100,000 historically",
+  "match": "Varies",
+  "reimb": "Cash + in-kind",
+  "verdict": "cond",
+  "verdictText": "I checked their application portal today: it reports no open opportunities. Historically strong for park agencies, so worth monitoring rather than dismissing.",
+  "scores": {
+   "award": 35,
+   "matchEase": 85,
+   "adaFit": 45,
+   "simplicity": 70,
+   "oddsEase": 50,
+   "timing": 15
+  },
+  "need": [
+   "Check nrpa-grants.secure-platform.com periodically — new rounds post there",
+   "Past programs paired cash with in-kind infrastructure, including $50,000–$100,000 in Musco Lighting equipment plus a $20,000 activation grant",
+   "NRPA membership may be required for some partner opportunities"
+  ],
+  "watch": "Their separate Grant & Fundraising Resources page aggregates outside opportunities and is worth a monthly look regardless of whether NRPA itself has anything open.",
+  "src": "https://www.nrpa.org/our-work/Grant-Fundraising-Resources/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Historically paired cash with in-kind infrastructure. Non-federal, so usable as match if a round opens.",
+   "with": [
+    "lwcf",
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "aep",
+  "name": "AEP Foundation / Indiana Michigan Power",
+  "agency": "American Electric Power",
+  "level": "Private",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Invitation only — no open application",
+  "amount": "$1,000 – $1M range",
+  "match": "Varies",
+  "reimb": "Upfront",
+  "verdict": "cond",
+  "verdictText": "Does not accept unsolicited proposals. Access runs through the local operating company, and their stated focus is education and basic human needs rather than parks.",
+  "scores": {
+   "award": 45,
+   "matchEase": 90,
+   "adaFit": 40,
+   "simplicity": 40,
+   "oddsEase": 30,
+   "timing": 40
+  },
+  "need": [
+   "Confirm Hartford City is inside Indiana Michigan Power service territory",
+   "Contact I&M community affairs in Fort Wayne to ask about an invitation",
+   "Sources differ on whether political subdivisions qualify or only 501(c)(3)s — ask directly"
+  ],
+  "watch": "Low probability, low effort. One phone call establishes whether it is worth any further attention.",
+  "src": "https://www.aep.com/community/givingback/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Match source",
+   "note": "Corporate, non-federal. Small but clean money if an invitation ever materializes.",
+   "with": [
+    "lwcf"
+   ]
+  }
+ },
+ {
+  "id": "orlp",
+  "name": "Outdoor Recreation Legacy Partnership (ORLP)",
+  "agency": "National Park Service",
+  "level": "Federal",
+  "status": "Annual",
+  "deadline": "",
+  "deadlineLabel": "Not available to Hartford City",
+  "amount": "$300,000 – $15M",
+  "match": "50%",
+  "reimb": "Reimbursement",
+  "verdict": "no",
+  "verdictText": "Ruled out definitively. ORLP requires urban areas with a population of 25,000 or more. Hartford City has 5,944.",
+  "scores": {
+   "award": 100,
+   "matchEase": 15,
+   "adaFit": 60,
+   "simplicity": 30,
+   "oddsEase": 5,
+   "timing": 20
+  },
+  "need": [
+   "Not eligible — no action. Listed so it stops resurfacing in searches."
+  ],
+  "watch": "The large dollar figures make this look attractive in any federal parks funding list. The population floor disqualifies Hartford City outright.",
+  "src": "https://www.nps.gov/subjects/lwcf/orlp.htm",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Not eligible.",
+   "with": []
+  }
+ },
+ {
+  "id": "stbt",
+  "name": "Small Town Big Trees Grant",
+  "agency": "DNR — Community & Urban Forestry",
+  "level": "State",
+  "status": "Open",
+  "deadline": "2026-09-11",
+  "deadlineLabel": "Closes Sept 11, 2026 — open now",
+  "amount": "$500 – $5,000",
+  "match": "1:1 — cash, in-kind, or volunteer hours",
+  "reimb": "Reimbursement",
+  "verdict": "yes",
+  "verdictText": "Built specifically for Indiana communities of 10,000 or fewer. Hartford City is squarely inside the target, which means a far smaller applicant pool.",
+  "scores": {
+   "award": 25,
+   "matchEase": 70,
+   "adaFit": 15,
+   "simplicity": 85,
+   "oddsEase": 85,
+   "timing": 100
+  },
+  "need": [
+   "Apply through the Indiana State Budget Agency portal — all CUF submissions route there",
+   "Eligible work: tree planting, canopy planning, tree inventory, maintenance, education",
+   "Reimbursement basis — complete milestones and document them before funds are released",
+   "Email urbanforestry@dnr.in.gov with eligibility or project design questions"
+  ],
+  "watch": "Not an ADA program, but it is open right now with a month left and it is aimed at towns your size. Shade over accessible paths and seating areas is a legitimate framing. The 1:1 match sounds heavy until you read what counts: volunteer labor hours and in-kind services qualify. A planting day with the Friends group can cover most of it.",
+  "src": "https://secure.in.gov/dnr/forestry/programs/community-and-urban-forestry",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Reimbursable and narrow in scope. Runs cleanly alongside a construction grant — plant shade over the accessible paths another grant builds.",
+   "with": [
+    "cdbg-pf",
+    "lwcf"
+   ]
+  }
+ },
+ {
+  "id": "cufa",
+  "name": "Community & Urban Forestry Assistance (CUFA)",
+  "agency": "DNR — Division of Forestry",
+  "level": "State",
+  "status": "Open",
+  "deadline": "2026-09-11",
+  "deadlineLabel": "Closes Sept 11, 2026 — open now",
+  "amount": "$1,000 – $30,000",
+  "match": "1:1 — cash, in-kind, or volunteer hours",
+  "reimb": "Reimbursement",
+  "verdict": "likely",
+  "verdictText": "The larger sibling of Small Town Big Trees, aimed at bigger communities and organizations. Hartford City can apply but fits the small-town track better.",
+  "scores": {
+   "award": 40,
+   "matchEase": 70,
+   "adaFit": 15,
+   "simplicity": 70,
+   "oddsEase": 55,
+   "timing": 100
+  },
+  "need": [
+   "Choose between CUFA and Small Town Big Trees — read both before picking",
+   "Funded through the USDA Forest Service Urban & Community Forestry Program",
+   "Supports comprehensive forestry management, major plantings, inventory, and education",
+   "Submission through the Indiana State Budget Agency portal"
+  ],
+  "watch": "Contact Jacob Roos, CUF Program Director, JRoos@dnr.IN.gov, 317-234-4386, before deciding which of the two tracks to apply under.",
+  "src": "https://secure.in.gov/dnr/forestry/programs/community-and-urban-forestry",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Same as Small Town Big Trees. Choose one track, not both.",
+   "with": [
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "blight",
+  "name": "Blight Clearance Program (BCP)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-04-05",
+  "deadlineLabel": "Proposal ~Apr 5, full application ~Jun 7",
+  "amount": "Up to $500,000",
+  "match": "10% of total project cost",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Funds demolition of deteriorated downtown buildings and vacant industrial sites. Relevant only if a blighted parcel adjoins or could become parkland.",
+  "scores": {
+   "award": 80,
+   "matchEase": 80,
+   "adaFit": 15,
+   "simplicity": 35,
+   "oddsEase": 50,
+   "timing": 60
+  },
+  "need": [
+   "Identify a specific deteriorated or abandoned structure the city controls or could acquire",
+   "Same certified grant administrator requirement as all CDBG programs",
+   "Site restoration and reseeding after demolition is an eligible cost",
+   "Strongest when paired with a stated plan for what replaces the structure"
+  ],
+  "watch": "Awards to comparable towns have run $114,500 to $500,000. If any blighted parcel could become green space, this is the vehicle for clearing it.",
+  "src": "https://www.in.gov/ocra/cdbg/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Stacks well",
+   "note": "Clear a blighted parcel with BCP, then develop it with LWCF or USDA. A two-stage sequence rather than a simultaneous stack.",
+   "with": [
+    "lwcf",
+    "usda-cf"
+   ]
+  }
+ },
+ {
+  "id": "msrp",
+  "name": "Main Street Revitalization Program (MSRP)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-04-05",
+  "deadlineLabel": "Proposal ~Apr 5, full application ~Jun 7",
+  "amount": "$500,000 – $600,000",
+  "match": "20% listed on OCRA page; R1 PDF says 10% — verify",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Funds streetscapes, façades, and downtown infrastructure — but requires a designated active Indiana Main Street group, and the project must fit that group's strategy.",
+  "scores": {
+   "award": 75,
+   "matchEase": 80,
+   "adaFit": 30,
+   "simplicity": 35,
+   "oddsEase": 45,
+   "timing": 35
+  },
+  "need": [
+   "Confirm whether Hartford City has an active designated Indiana Main Street program",
+   "If not, attending a Main Street 101 session is the entry point to the Downtown Affiliate Network",
+   "Project must be part of the Main Street group's overall strategy, not a standalone parks ask",
+   "Accessible streetscape connecting downtown to a park could satisfy both this and the ADA audit"
+  ],
+  "watch": "Hartford City has a historic courthouse square. If there is no Main Street organization, that is a gap worth closing — it gates this program permanently. Cap is higher than previously recorded, but the match figure conflicts between OCRA’s program page (20%) and the 2026 Round 1 instructions PDF (10%). One call to the Community Liaison settles it — the difference is roughly $50K on a $500K project.",
+  "src": "https://www.in.gov/ocra/mainstreet/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Stacks well",
+   "note": "A downtown-to-park accessible connection can be split: MSRP funds the streetscape portion, CDBG Public Facilities funds the park side.",
+   "with": [
+    "cdbg-pf"
+   ]
+  }
+ },
+ {
+  "id": "hrgp",
+  "name": "Historic Renovation Grant Program (HRGP)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Unfunded",
+  "deadline": "",
+  "deadlineLabel": "Program unfunded — no new awards",
+  "amount": "$5,000 – $100,000",
+  "match": "50% of eligible cost",
+  "reimb": "Reimbursement",
+  "verdict": "no",
+  "verdictText": "OCRA states the current budget \"does not include funding for the Historic Renovation Grant Program... no additional grants from this program will be awarded.\" Previously funded projects continue. The Indiana Historic Rehabilitation Tax Credit (IEDC) is the replacement mechanism.",
+  "scores": {
+   "award": 45,
+   "matchEase": 50,
+   "adaFit": 20,
+   "simplicity": 60,
+   "oddsEase": 0,
+   "timing": 0
+  },
+  "need": [
+   "Remove from the referral list for downtown property owners — it is closed",
+   "Point owners to the Indiana Historic Rehabilitation Tax Credit through IEDC instead"
+  ],
+  "watch": "Was listed as a rolling year-round option. It is now gone; the tax credit is the successor and works differently (credit, not cash).",
+  "src": "https://www.in.gov/ocra/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "City cannot apply. Relevant only as something to hand a private downtown property owner.",
+   "with": []
+  }
+ },
+ {
+  "id": "dhpa-hpf",
+  "name": "Historic Preservation Fund (HPF)",
+  "agency": "DNR — Historic Preservation & Archaeology",
+  "level": "Federal",
+  "status": "Annual",
+  "deadline": "2027-06-05",
+  "deadlineLabel": "~June 5 annually",
+  "amount": "$5,000 – $50,000 typical",
+  "match": "Required local match",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "Local government agencies are eligible applicants, but the assisted property must be listed in the National Register of Historic Places and owned by the applicant.",
+  "scores": {
+   "award": 35,
+   "matchEase": 55,
+   "adaFit": 25,
+   "simplicity": 45,
+   "oddsEase": 50,
+   "timing": 45
+  },
+  "need": [
+   "Determine whether any park structure or monument is National Register listed",
+   "If a park sits inside a National Register district, that may open the door",
+   "Applications route through the State Agency Grant Opportunities website",
+   "Recent rounds awarded five grants totaling roughly $279,000 statewide — small field"
+  ],
+  "watch": "One past grant funded a National Register nomination for a city park historic district. If Hartford City has an eligible park structure, a nomination is itself fundable.",
+  "src": "https://www.in.gov/dnr/historic-preservation/financial-assistance/grants/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Needs match",
+   "note": "Federal money requiring local match, so pair it with private or city funds rather than another federal award.",
+   "with": [
+    "bccf",
+    "bbf-general"
+   ]
+  }
+ },
+ {
+  "id": "bhct",
+  "name": "President Benjamin Harrison Conservation Trust",
+  "agency": "DNR — Land Acquisition",
+  "level": "State",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Cycle unconfirmed",
+  "amount": "Varies",
+  "match": "Match required",
+  "reimb": "Varies",
+  "verdict": "cond",
+  "verdictText": "Funds land acquisition for future parks, nature preserves, and recreation areas. Applies only if Hartford City wants to acquire land rather than improve what it has.",
+  "scores": {
+   "award": 50,
+   "matchEase": 50,
+   "adaFit": 20,
+   "simplicity": 50,
+   "oddsEase": 45,
+   "timing": 50
+  },
+  "need": [
+   "Only relevant if there is a specific parcel the city wants to acquire",
+   "Funded through Environmental License Plate sales, so award volume fluctuates",
+   "Each dollar is matched by nonprofit or governmental partners",
+   "Contact DNR Land Acquisition to confirm the current application cycle"
+  ],
+  "watch": "Acquisition, not improvement. Park it here unless a specific parcel comes up.",
+  "src": "https://www.in.gov/dnr/land-acquisition/funding/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Needs match",
+   "note": "Acquisition dollars matched by nonprofit or governmental partners. Land acquired here can then become the site for an LWCF development grant.",
+   "with": [
+    "lwcf",
+    "bccf"
+   ]
+  }
+ },
+ {
+  "id": "stormwater",
+  "name": "Stormwater Improvements Program",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-04-05",
+  "deadlineLabel": "Proposal ~Apr 5, full application ~Jun 7",
+  "amount": "Up to $750,000",
+  "match": "10% of total project cost",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "A CDBG construction program. Relevant if drainage problems in a park are part of what makes paths impassable — which is common in ADA findings.",
+  "scores": {
+   "award": 70,
+   "matchEase": 80,
+   "adaFit": 20,
+   "simplicity": 35,
+   "oddsEase": 50,
+   "timing": 60
+  },
+  "need": [
+   "Review the ADA audit for findings tied to standing water, erosion, or washed-out surfaces",
+   "Certified grant administrator and preliminary engineering report required",
+   "Strongest if the drainage issue affects a broader area than a single park"
+  ],
+  "watch": "Worth a look at the audit. Drainage and accessibility failures often share a root cause, and this program has a much larger budget than parks-specific pots.",
+  "src": "https://www.in.gov/ocra/cdbg/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Stacks well",
+   "note": "Drainage first, surfacing second. Fixing the water problem before rebuilding a path protects the later investment.",
+   "with": [
+    "cdbg-pf",
+    "lwcf"
+   ]
+  }
+ },
+ {
+  "id": "pbif",
+  "name": "Place Based Investment Fund (PBIF)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Current status unconfirmed",
+  "amount": "Varies",
+  "match": "Varies",
+  "reimb": "Varies",
+  "verdict": "cond",
+  "verdictText": "Listed among OCRA's active programs but I could not confirm a current application round or guidelines. Ask your Community Liaison directly.",
+  "scores": {
+   "award": 55,
+   "matchEase": 65,
+   "adaFit": 40,
+   "simplicity": 50,
+   "oddsEase": 50,
+   "timing": 40
+  },
+  "need": [
+   "Add to the list of questions for Lindsey Hammond",
+   "Placemaking programs at OCRA have historically funded park and public-space projects"
+  ],
+  "watch": "On the official program roster but thin on public documentation. One question on a call resolves it.",
+  "src": "https://www.in.gov/ocra/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Standalone",
+   "note": "Unconfirmed. Ask the Community Liaison how it interacts with CDBG rounds — placemaking funds sometimes cannot run concurrently with a CDBG award.",
+   "with": []
+  }
+ },
+ {
+  "id": "hci",
+  "name": "Hometown Collaboration Initiative (HCI)",
+  "agency": "OCRA",
+  "level": "State",
+  "status": "Verify",
+  "deadline": "",
+  "deadlineLabel": "Cohort-based — confirm cycle",
+  "amount": "Technical assistance + small grant",
+  "match": "Varies",
+  "reimb": "Varies",
+  "verdict": "cond",
+  "verdictText": "A capacity-building program rather than a construction grant. Aimed at communities under 25,000 building local leadership and project capability.",
+  "scores": {
+   "award": 25,
+   "matchEase": 80,
+   "adaFit": 35,
+   "simplicity": 60,
+   "oddsEase": 60,
+   "timing": 40
+  },
+  "need": [
+   "Confirm whether a current cohort is forming",
+   "Best value is the technical assistance and peer network, not the dollars",
+   "Could be a route to building the Friends of Parks group with state support"
+  ],
+  "watch": "For a brand-new board member, the capacity-building track may be worth more than a small check. Ask about it on the same call.",
+  "src": "https://www.in.gov/ocra/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Unlocks others",
+   "note": "Capacity-building rather than capital. Its value is making the organization able to win the larger grants, including help standing up a Friends group.",
+   "with": [
+    "cdbg-plan"
+   ]
+  }
+ },
+ {
+  "id": "pms",
+  "name": "PreservINg Main Street",
+  "agency": "OCRA / Indiana Landmarks / Indiana Humanities",
+  "level": "State",
+  "status": "Cyclical",
+  "deadline": "2027-05",
+  "deadlineLabel": "Next application round opens May 2027",
+  "amount": "Up to $2M (delivered via CDBG)",
+  "match": "Follows CDBG match rules",
+  "reimb": "Reimbursement",
+  "verdict": "cond",
+  "verdictText": "The largest single award on this board, but it is a designation, not a grant round — one Indiana community is selected per cycle. Requires a National Register downtown historic district, non-entitlement status, and Nationally or Indiana Accredited Main Street standing. Hartford City meets the non-entitlement test; the other two need confirming.",
+  "scores": {
+   "award": 100,
+   "matchEase": 45,
+   "adaFit": 30,
+   "simplicity": 15,
+   "oddsEase": 15,
+   "timing": 35
+  },
+  "need": [
+   "Confirm whether Hartford City's downtown is a listed National Register historic district",
+   "Confirm Indiana Accredited Main Street status — this is the hard gate, and it takes time to earn",
+   "Partnership letters required from local government, the Main Street organization, the community foundation, and business/building owners",
+   "Round opens May 2027 — the accreditation work has to start well before that"
+  ],
+  "watch": "Long odds (one community selected) but the payoff is an order of magnitude above anything else here. The accreditation prerequisite is the same work that unlocks MSRP, so the effort is not wasted even if the bid fails.",
+  "src": "https://www.in.gov/ocra/preserving-main-street/",
+  "verified": "2026-08-13",
+  "stack": {
+   "role": "Unlocks others",
+   "note": "Shares the Main Street accreditation prerequisite with MSRP — pursue that qualification once and both open up.",
+   "with": [
+    "msrp",
+    "cdbg-pf"
+   ]
+  }
+ }
+]
+</script>
+<script>
+const SEED = JSON.parse(document.getElementById("grant-data").textContent);
+const TODAY = new Date('2026-08-11');
+
+
+const WEIGHTS = {award:.20,matchEase:.24,adaFit:.20,simplicity:.12,oddsEase:.12,timing:.12};
+const SCORE_LABELS = {
+  award:'Award size', matchEase:'Match affordability', adaFit:'ADA relevance',
+  simplicity:'Administrative simplicity', oddsEase:'Realistic odds', timing:'Timing / availability'
+};
+function fitOf(g){ return Math.round(Object.entries(WEIGHTS).reduce((s,[k,w])=>s+(g.scores[k]||0)*w,0)); }
+
+const EFFORT_TIERS = [
+  {min:90, level:1, label:'An afternoon',        detail:'Short form, no professional help needed.'},
+  {min:75, level:2, label:'A few evenings',      detail:'Straightforward narrative plus a budget.'},
+  {min:55, level:3, label:'A week or two',       detail:'Real documentation; doable in-house with effort.'},
+  {min:40, level:4, label:'Weeks — get help',    detail:'Engineering or planning documents required.'},
+  {min:0,  level:5, label:'Months — pro needed', detail:'Certified administrator, hearings, engineering report.'}
+];
+function effortOf(g){ return EFFORT_TIERS.find(t => (g.scores.simplicity||0) >= t.min); }
+
+const VERDICT_META = {
+  yes:{cls:'v-yes',label:'Qualifies'}, likely:{cls:'v-likely',label:'Likely qualifies'},
+  cond:{cls:'v-cond',label:'Conditional'}, no:{cls:'v-no',label:'Not a fit'}
+};
+
+let overrides = {}, custom = [], state = {q:'',sort:'fit',level:new Set(),status:new Set(),verdict:new Set(),starred:false}, open=new Set();
+
+async function loadStore(){
+  try{
+    const r = await window.storage.get('hcparks:overrides');
+    if(r && r.value) overrides = JSON.parse(r.value);
+  }catch(e){ overrides = {}; }
+  try{
+    const c = await window.storage.get('hcparks:custom');
+    if(c && c.value) custom = JSON.parse(c.value);
+  }catch(e){ custom = []; }
+}
+async function saveOverrides(){
+  try{ await window.storage.set('hcparks:overrides', JSON.stringify(overrides)); return true; }
+  catch(e){ document.getElementById('storagenote').textContent='Could not save — your notes are held only for this session.'; return false; }
+}
+
+function merged(){
+  return SEED.concat(custom).map(g=>{
+    const o = overrides[g.id] || {};
+    return Object.assign({}, g, o, {fit:fitOf(g)});
+  });
+}
+function daysSince(d){ if(!d) return 999; return Math.floor((TODAY - new Date(d))/864e5); }
+function deadlineSort(g){ return g.deadline ? new Date(g.deadline).getTime() : 8.64e15; }
+function amountRank(g){ const m=(g.amount||'').match(/([\d.]+)\s*M/i); if(m) return parseFloat(m[1])*1e6;
+  const k=(g.amount||'').match(/([\d,]+)K/i); if(k) return parseFloat(k[1].replace(/,/g,''))*1e3;
+  const n=(g.amount||'').match(/\$([\d,]+)/); return n?parseFloat(n[1].replace(/,/g,'')):0; }
+function matchRank(g){ const m=(g.match||'').match(/(\d+)\s*%/); return m?parseInt(m[1]):(/none/i.test(g.match)?0:50); }
+
+function buildChips(){
+  const mk=(host,vals,key)=>{
+    document.getElementById(host).innerHTML = vals.map(v=>
+      `<button class="chip" data-key="${key}" data-val="${v}" aria-pressed="false">${v}</button>`).join('');
+  };
+  mk('f-level',['State','Federal','Private'],'level');
+  mk('f-status',['Open','Rolling','Cyclical','Annual','Closed','Verify','Unfunded'],'status');
+  mk('f-verdict',['Qualifies','Likely qualifies','Conditional','Not a fit'],'verdict');
+  document.querySelectorAll('.chip[data-key]').forEach(b=>b.addEventListener('click',()=>{
+    const set = state[b.dataset.key]; const v = b.dataset.val;
+    if(set.has(v)) set.delete(v); else set.add(v);
+    b.setAttribute('aria-pressed', set.has(v));
+    render();
+  }));
+}
+
+function filtered(){
+  const q = state.q.trim().toLowerCase();
+  let list = merged().filter(g=>{
+    if(state.starred && !g.starred) return false;
+    if(state.level.size && !state.level.has(g.level)) return false;
+    if(state.status.size && !state.status.has(g.status)) return false;
+    if(state.verdict.size && !state.verdict.has(VERDICT_META[g.verdict].label)) return false;
+    if(!q) return true;
+    const hay = [g.name,g.agency,g.level,g.status,g.amount,g.match,g.verdictText,g.watch,(g.need||[]).join(' '),g.notes||''].join(' ').toLowerCase();
+    return hay.includes(q);
+  });
+  const s = state.sort;
+  list.sort((a,b)=>{
+    if(s==='fit') return b.fit-a.fit;
+    if(s==='effort') return effortOf(a).level-effortOf(b).level || b.fit-a.fit;
+    if(s==='deadline') return deadlineSort(a)-deadlineSort(b);
+    if(s==='amount') return amountRank(b)-amountRank(a);
+    if(s==='match') return matchRank(a)-matchRank(b);
+    return a.name.localeCompare(b.name);
+  });
+  return list;
+}
+
+function esc(s){ return String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+function render(){
+  const list = filtered();
+  const host = document.getElementById('sheets');
+  const total = merged().length;
+  document.getElementById('count').textContent =
+    `${list.length} of ${total} sheets shown · ${merged().filter(g=>g.verdict==='yes').length} clear qualifiers · ${merged().filter(g=>daysSince(g.verified)>90).length} need re-verifying`;
+
+  if(!list.length){
+    host.innerHTML = `<div class="empty"><p>No sheets match.</p><small>Loosen a filter or clear the search to see the full set.</small></div>`;
+    return;
+  }
+
+  host.innerHTML = list.map((g,i)=>{
+    const vm = VERDICT_META[g.verdict];
+    const eff = effortOf(g);
+    const stale = daysSince(g.verified) > 90;
+    const isOpen = open.has(g.id);
+    const scoreRows = Object.keys(WEIGHTS).map(k=>
+      `<li><span>${SCORE_LABELS[k]}</span><span>${g.scores[k]}</span></li>`).join('');
+    return `
+    <article class="sheet" data-id="${g.id}">
+      <div class="sh-top">
+        <span class="sh-no">SHEET ${String(i+1).padStart(2,'0')} / ${String(list.length).padStart(2,'0')}</span>
+        <button class="star ${g.starred?'on':''}" data-star="${g.id}" aria-label="Star ${esc(g.name)}" aria-pressed="${!!g.starred}">${g.starred?'★':'☆'}</button>
+      </div>
+      <div class="sh-name">${esc(g.name)}</div>
+      <div class="sh-agency">${esc(g.agency)} · ${esc(g.level)}${g.stack?` <span class="rolebadge r-${(g.stack.role||'').replace(/\s/g,'').toLowerCase()}">${esc(g.stack.role)}</span>`:''}</div>
+
+      <div class="verdict ${vm.cls}">
+        <span class="v-tag">${vm.label}</span>
+        ${esc(g.verdictText)}
+      </div>
+
+      <div class="specs">
+        <div class="spec"><div class="spec-k">Award</div><div class="spec-v">${esc(g.amount)}</div></div>
+        <div class="spec"><div class="spec-k">Local match</div><div class="spec-v ${matchRank(g)>=50?'warn':(matchRank(g)<=10?'ok':'')}">${esc(g.match)}</div></div>
+        <div class="spec"><div class="spec-k">Next window</div><div class="spec-v">${esc(g.deadlineLabel||'—')}</div></div>
+        <div class="spec"><div class="spec-k">Cash flow</div><div class="spec-v ${/Reimb/i.test(g.reimb)?'warn':''}">${esc(g.reimb)}</div></div>
+        <div class="spec" style="grid-column:1/-1;border-right:none">
+          <div class="spec-k">Effort to apply</div>
+          <div class="spec-v ${eff.level<=2?'ok':(eff.level>=4?'warn':'')}">
+            <span class="dots">${'●'.repeat(eff.level)}${'○'.repeat(5-eff.level)}</span>
+            ${esc(eff.label)}
+          </div>
+          <div class="effort-detail">${esc(eff.detail)}</div>
+        </div>
+      </div>
+
+      <div class="gauge">
+        <div class="g-head"><span class="g-lab">Fit score</span><span class="g-num">${g.fit}<span style="font-size:11px;color:var(--slate)">/100</span></span></div>
+        <div class="g-track">
+          <span class="g-end"></span>
+          <span class="g-fill" style="width:${g.fit}%"></span>
+          <span class="g-mark" style="left:calc(${g.fit}% - 0.5px)"></span>
+        </div>
+      </div>
+
+      <div class="sh-actions">
+        <button class="expandbtn" data-expand="${g.id}" aria-expanded="${isOpen}">${isOpen?'Hide detail':'What Hartford City must do'}</button>
+      </div>
+
+      <div class="detail ${isOpen?'open':''}" id="d-${g.id}">
+        <h3 class="d-h">Requirements</h3>
+        <div class="d-body"><ul>${(g.need||[]).map(n=>`<li>${esc(n)}</li>`).join('')}</ul></div>
+        ${g.watch?`<h3 class="d-h">Worth knowing</h3><div class="d-body">${esc(g.watch)}</div>`:''}
+        <h3 class="d-h">Stacking — ${esc(g.stack?g.stack.role:'—')}</h3>
+        <div class="d-body">${esc(g.stack?g.stack.note:'')}
+        ${(g.stack&&g.stack.with&&g.stack.with.length)?`<div class="pairs">${g.stack.with.map(id=>{
+          const p=merged().find(x=>x.id===id); return p?`<span class="pair">${esc(p.name)}</span>`:'';}).join('')}</div>`:''}
+        </div>
+        <h3 class="d-h">Fit breakdown</h3>
+        <ul class="scorelist">${scoreRows}</ul>
+        <h3 class="d-h">Your notes</h3>
+        <textarea data-note="${g.id}" placeholder="Who you spoke to, what they said, next step…">${esc(g.notes||'')}</textarea>
+        <div class="d-row">
+          <button class="minibtn" data-save="${g.id}">Save note</button>
+          <button class="minibtn ghost" data-verify="${g.id}">Mark verified today</button>
+          <span class="savenote mono" id="sv-${g.id}">Saved</span>
+        </div>
+        <h3 class="d-h">Source</h3>
+        <a class="src" href="${esc(g.src)}" target="_blank" rel="noopener">${esc(g.src)}</a>
+      </div>
+
+      <div class="revblock">
+        <div class="rev-l"><div class="rev-k">Verified</div><div class="rev-v ${stale?'stale':''}">${esc(g.verified||'never')}${stale?' · re-check':''}</div></div>
+        <div class="rev-r"><div class="rev-k">Window</div><div class="rev-v">${esc(g.status)}</div></div>
+      </div>
+    </article>`;
+  }).join('');
+
+  host.querySelectorAll('[data-expand]').forEach(b=>b.addEventListener('click',()=>{
+    const id=b.dataset.expand; open.has(id)?open.delete(id):open.add(id); render();
+  }));
+  host.querySelectorAll('[data-star]').forEach(b=>b.addEventListener('click',async()=>{
+    const id=b.dataset.star; const cur = merged().find(x=>x.id===id);
+    overrides[id]=Object.assign({},overrides[id],{starred:!cur.starred});
+    await saveOverrides(); render();
+  }));
+  host.querySelectorAll('[data-save]').forEach(b=>b.addEventListener('click',async()=>{
+    const id=b.dataset.save;
+    const ta=host.querySelector(`[data-note="${id}"]`);
+    overrides[id]=Object.assign({},overrides[id],{notes:ta.value});
+    const ok=await saveOverrides();
+    const n=document.getElementById('sv-'+id);
+    if(n){ n.textContent = ok?'Saved':'Not saved'; n.classList.add('on'); setTimeout(()=>n.classList.remove('on'),1600); }
+  }));
+  host.querySelectorAll('[data-verify]').forEach(b=>b.addEventListener('click',async()=>{
+    const id=b.dataset.verify;
+    overrides[id]=Object.assign({},overrides[id],{verified:TODAY.toISOString().slice(0,10)});
+    await saveOverrides(); render();
+  }));
+}
+
+document.getElementById('q').addEventListener('input',e=>{state.q=e.target.value;render()});
+document.getElementById('sort').addEventListener('change',e=>{state.sort=e.target.value;render()});
+document.getElementById('f-star').addEventListener('click',function(){
+  state.starred=!state.starred; this.setAttribute('aria-pressed',state.starred); render();
+});
+document.getElementById('reset').addEventListener('click',()=>{
+  state.q='';state.sort='fit';state.level.clear();state.status.clear();state.verdict.clear();state.starred=false;
+  document.getElementById('q').value='';document.getElementById('sort').value='fit';
+  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  render();
+});
+
+buildChips();
+loadStore().then(render);
+
+/* ---------------- Charts ---------------- */
+const LC={State:'#1B4965',Federal:'#C1442E',Private:'#3E6B4F'};
+function svgWrap(inner,w,h){return `<svg viewBox="0 0 ${w} ${h}" role="img">${inner}</svg>`;}
+
+function chartFitEffort(list){
+  const W=760,H=420,P={l:66,r:20,t:18,b:62};
+  let s='';
+  for(let e=1;e<=5;e++){
+    const x=P.l+((e-1)/4)*(W-P.l-P.r);
+    s+=`<line x1="${x}" y1="${P.t}" x2="${x}" y2="${H-P.b}" stroke="rgba(27,73,101,.12)"/>`;
+    s+=`<text class="ct" x="${x}" y="${H-P.b+20}" text-anchor="middle">${'●'.repeat(e)}</text>`;
+  }
+  ['An afternoon','Few evenings','Week or two','Weeks+help','Months+pro'].forEach((lb,i)=>{
+    const x=P.l+(i/4)*(W-P.l-P.r);
+    s+=`<text class="ct" x="${x}" y="${H-P.b+40}" text-anchor="middle">${lb}</text>`;
+  });
+  for(let v=0;v<=100;v+=25){
+    const y=(H-P.b)-(v/100)*(H-P.b-P.t);
+    s+=`<line x1="${P.l}" y1="${y}" x2="${W-P.r}" y2="${y}" stroke="rgba(27,73,101,.10)"/>`;
+    s+=`<text class="ct" x="${P.l-8}" y="${y+3}" text-anchor="end">${v}</text>`;
+  }
+  s+=`<text class="ct" x="${P.l-38}" y="${P.t+4}" transform="rotate(-90 ${P.l-38} ${(H-P.b+P.t)/2})" text-anchor="middle">FIT SCORE</text>`;
+  list.forEach(g=>{
+    const e=effortOf(g).level;
+    const x=P.l+((e-1)/4)*(W-P.l-P.r)+(Math.random()*16-8);
+    const y=(H-P.b)-(g.fit/100)*(H-P.b-P.t);
+    const c=LC[g.level]||'#6B7C89';
+    const open=/Open|Rolling/.test(g.status);
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${open?6.5:4.5}" fill="${open?c:'none'}" stroke="${c}" stroke-width="1.6" opacity=".9"><title>${g.name} — fit ${g.fit}, ${effortOf(g).label}, ${g.status}</title></circle>`;
+  });
+  return svgWrap(s,W,H);
+}
+
+function chartMatch(list){
+  const rows=list.filter(g=>g.verdict!=='no').sort((a,b)=>matchRank(a)-matchRank(b));
+  const W=760,rh=24,H=rows.length*rh+34,P={l:300,r:70};
+  let s='';
+  rows.forEach((g,i)=>{
+    const y=i*rh+14, mr=Math.min(matchRank(g),100);
+    const bw=(mr/100)*(W-P.l-P.r);
+    s+=`<text class="cl" x="${P.l-8}" y="${y+4}" text-anchor="end">${g.name.length>30?g.name.slice(0,28)+'…':g.name}</text>`;
+    s+=`<line x1="${P.l}" y1="${y}" x2="${W-P.r}" y2="${y}" stroke="rgba(27,73,101,.08)"/>`;
+    s+=`<rect x="${P.l}" y="${y-5}" width="${Math.max(bw,1.5)}" height="10" fill="${mr>=50?'#C1442E':(mr<=10?'#3E6B4F':'#1B4965')}" opacity=".85"><title>${g.name}: ${g.match}</title></rect>`;
+    s+=`<text class="ct" x="${P.l+bw+6}" y="${y+3}">${esc(g.match)}</text>`;
+  });
+  return svgWrap(s,W,H);
+}
+
+function chartCalendar(list){
+  const dated=list.filter(g=>g.deadline).sort((a,b)=>deadlineSort(a)-deadlineSort(b));
+  const W=760,rh=26,H=dated.length*rh+54,P={l:14,r:14,t:34};
+  const t0=TODAY.getTime(), t1=Math.max(...dated.map(deadlineSort));
+  const span=Math.max(t1-t0,1);
+  let s='';
+  for(let q=0;q<=6;q++){
+    const x=P.l+(q/6)*(W-P.l-P.r);
+    const d=new Date(t0+(q/6)*span);
+    s+=`<line x1="${x}" y1="${P.t-8}" x2="${x}" y2="${H-8}" stroke="rgba(27,73,101,.12)"/>`;
+    s+=`<text class="ct" x="${x}" y="${P.t-14}" text-anchor="middle">${d.toLocaleDateString('en-US',{month:'short',year:'2-digit'})}</text>`;
+  }
+  dated.forEach((g,i)=>{
+    const y=P.t+i*rh;
+    const x=P.l+((deadlineSort(g)-t0)/span)*(W-P.l-P.r);
+    const c=LC[g.level]||'#6B7C89';
+    s+=`<circle cx="${x.toFixed(1)}" cy="${y}" r="4.5" fill="${c}"><title>${g.name} — ${g.deadlineLabel}</title></circle>`;
+    const flip=x>W*0.62;
+    s+=`<text class="cl" x="${flip?x-9:x+9}" y="${y+4}" text-anchor="${flip?'end':'start'}">${g.name.length>32?g.name.slice(0,30)+'…':g.name}</text>`;
+  });
+  return svgWrap(s,W,H);
+}
+
+function chartRoles(list){
+  const roles={};
+  list.forEach(g=>{const r=(g.stack&&g.stack.role)||'Standalone';roles[r]=(roles[r]||0)+1;});
+  const entries=Object.entries(roles).sort((a,b)=>b[1]-a[1]);
+  const W=760,bh=40,H=entries.length*bh+18,P={l:200,r:60};
+  const max=Math.max(...entries.map(e=>e[1]));
+  let s='';
+  entries.forEach(([r,n],i)=>{
+    const y=i*bh+10, bw=(n/max)*(W-P.l-P.r);
+    s+=`<text class="cl" x="${P.l-10}" y="${y+16}" text-anchor="end">${r}</text>`;
+    s+=`<rect x="${P.l}" y="${y+3}" width="${bw}" height="21" fill="#1B4965" opacity=".8"/>`;
+    s+=`<text class="ct" x="${P.l+bw+7}" y="${y+16}">${n}</text>`;
+  });
+  return svgWrap(s,W,H);
+}
+
+function renderCharts(){
+  const list=filtered();
+  document.getElementById('charts').innerHTML=`
+  <div class="chartcard">
+    <h3>Fit against effort</h3>
+    <p class="cx">Filled circles are open or rolling right now; hollow circles are closed or future rounds. The upper-left quadrant is where you want to spend time — high fit, low effort. Hover any point for detail.</p>
+    ${chartFitEffort(list)}
+    <div class="legend"><span><i style="background:#1B4965"></i>State</span><span><i style="background:#C1442E"></i>Federal</span><span><i style="background:#3E6B4F"></i>Private</span><span><i style="border:1.5px solid #6B7C89"></i>Not currently open</span></div>
+  </div>
+  <div class="chartcard">
+    <h3>Match burden</h3>
+    <p class="cx">Green is 10% or less, red is 50% or more. This is the chart that determines what Hartford City can actually afford to accept, not just win.</p>
+    ${chartMatch(list)}
+  </div>
+  <div class="chartcard">
+    <h3>Deadline runway</h3>
+    <p class="cx">Every program with a dated window, plotted from today forward. Clusters show where the workload lands.</p>
+    ${chartCalendar(list)}
+  </div>
+  <div class="chartcard">
+    <h3>How these combine</h3>
+    <p class="cx">Match sources are non-federal money that can cover someone else's local share. Needs-match programs are the ones that require it. A healthy strategy has more of the former than you think.</p>
+    ${chartRoles(list)}
+  </div>`;
+}
+
+let tab='sheets';
+function setTab(t){
+  tab=t;
+  document.getElementById('tab-sheets').setAttribute('aria-selected',t==='sheets');
+  document.getElementById('tab-charts').setAttribute('aria-selected',t==='charts');
+  document.getElementById('sheets').hidden = t!=='sheets';
+  document.getElementById('charts').hidden = t!=='charts';
+  if(t==='charts') renderCharts();
+}
+document.getElementById('tab-sheets').addEventListener('click',()=>setTab('sheets'));
+document.getElementById('tab-charts').addEventListener('click',()=>setTab('charts'));
+
+document.getElementById('exportjson').addEventListener('click',()=>{
+  const data=JSON.stringify(merged().map(({fit,...g})=>g),null,1);
+  const blob=new Blob([data],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='hartford-city-grants.json';
+  a.click();
+});
+
+const _render=render;
+render=function(){ _render(); if(tab==='charts') renderCharts(); };
+</script>
+</body>
+</html>
