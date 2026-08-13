@@ -1,0 +1,11 @@
+{
+  "name": "parks-board",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "refresh": "claude -p \"Review the park grant dashboard in index.html and refresh any stale data or copy while preserving the current design and structure. Only make changes needed to keep the site current.\""
+  },
+  "devDependencies": {
+    "@anthropic-ai/claude-code": "^2.1.232"
+  }
+}
