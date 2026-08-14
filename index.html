@@ -222,6 +222,7 @@ textarea:focus{outline:2px solid var(--line);outline-offset:-1px;background:#fff
   padding:6px 11px;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
   letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border-radius:0;
   border:1px solid var(--line);background:var(--line);color:#fff;
+  display:inline-block;text-decoration:none;line-height:1.4;
 }
 .minibtn.ghost{background:transparent;color:var(--line)}
 .minibtn:focus-visible{outline:2px solid var(--red);outline-offset:2px}
@@ -361,6 +362,8 @@ footer p:last-child{margin-bottom:0}
   ],
   "watch": "Barrier removal ≠ repair. A rusted handrail on an existing ramp is maintenance and is not eligible. A path that was never accessible is barrier removal and is.",
   "src": "https://www.in.gov/ocra/cdbg/",
+  "applyUrl": "https://www.in.gov/ocra/cdbg/",
+  "applyLabel": "Official CDBG program page",
   "verified": "2026-08-13",
   "stack": {
    "role": "Match source",
@@ -401,6 +404,8 @@ footer p:last-child{margin-bottom:0}
   ],
   "watch": "No fixed deadline is a real advantage — you can apply when the project is ready rather than racing a cycle.",
   "src": "https://www.rd.usda.gov/programs-services/community-facilities/community-facilities-direct-loan-grant-program-7",
+  "applyUrl": "https://www.rd.usda.gov/programs-services/community-facilities/community-facilities-direct-loan-grant-program-7",
+  "applyLabel": "USDA application info",
   "verified": "2026-08-13",
   "stack": {
    "role": "Stacks well",
@@ -441,6 +446,8 @@ footer p:last-child{margin-bottom:0}
   ],
   "watch": "No match requirement makes this a strong candidate for funding the local share of a bigger state or federal grant.",
   "src": "https://www.ballfdn.org/grants",
+  "applyUrl": "https://www.ballfdn.org/grants",
+  "applyLabel": "Ball Brothers grants page",
   "verified": "2026-08-11",
   "stack": {
    "role": "Match source",
@@ -484,6 +491,8 @@ footer p:last-child{margin-bottom:0}
   ],
   "watch": "Renovations due to neglect, poor maintenance or vandalism are not eligible, and indoor facilities are excluded except as support facilities. Frame accessibility work as expanding access, not repairing decay. Two separate clocks. The master plan draft deadline is Nov 15 (final Apr 15) and it only governs eligibility; the grant application itself is emailed in a July 1 – Aug 1 window. Miss November and you are out for the following application year.",
   "src": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "applyUrl": "https://www.in.gov/dnr/state-parks/recreation/grants/",
+  "applyLabel": "DNR grants page",
   "verified": "2026-08-13",
   "stack": {
    "role": "Needs match",
@@ -1866,6 +1875,7 @@ function render(){
           <button class="minibtn ghost" data-verify="${g.id}">Mark verified today</button>
           <span class="savenote mono" id="sv-${g.id}">Saved</span>
         </div>
+        ${g.applyUrl?`<h3 class="d-h">Application</h3><a class="minibtn" href="${esc(g.applyUrl)}" target="_blank" rel="noopener">${esc(g.applyLabel || 'Apply here')}</a>`:''}
         <h3 class="d-h">Source</h3>
         <a class="src" href="${esc(g.src)}" target="_blank" rel="noopener">${esc(g.src)}</a>
       </div>
